@@ -6,7 +6,10 @@
 		<button type="button" class="btn btn-info" style="margin-bottom: 15px"><a href="/pertanyaan" style="color: white">Kembali</a></button>
 		<p>Judul Pertanyaan : {{$tanya->judul}} </p>
 		<p>Isi Pertanyaan : {{$tanya->isi}} </p>
-		<p>Tag : {{$tanya->tag}} </p>
+		<!-- <p>Tag : {{$tanya->tag}} </p> -->
+		@foreach($tanya->tags as $tag)
+            <a href="#" class="btn btn-success">{{ $tag->tag_name }}</a>
+        @endforeach
 		<h3>Daftar Jawaban</h3>
 		<table class="table table-striped">
 			<thead>

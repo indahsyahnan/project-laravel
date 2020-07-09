@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\TanyaModel;
-use App\Tanya;
+use App\Models\TanyaModel; // Custom Model
+use App\Tanya; // Eloquent Model
+use App\Models\Tag;
 
 class PertanyaanController extends Controller
 {
@@ -15,10 +16,10 @@ class PertanyaanController extends Controller
     public function index(){
     	//$tanya = TanyaModel::get_all();
         $tanya = Tanya::all();
-    	return view('items.index',compact('tanya'));
+    	return view('tanya.index',compact('tanya'));
     }
     public function create(){
-    	return view('items.form');
+    	return view('tanya.form');
     }
     public function store(Request $request){
 	   	//$data = $request->all();
@@ -33,23 +34,35 @@ class PertanyaanController extends Controller
 	   	if($item){
 	   		return redirect('/pertanyaan');
 	   	}*/
-        $item = Tanya::create([
+        $new_tanya = Tanya::create([
             "judul"=>$request["judul"],
-            "isi"=>$request["isi"],
-            "tag"=>$request["tag"],
+            "isi"=>$request["isi"]
         ]);
-        if($item){
-            return redirect('/pertanyaan');
+
+        $tagArr = explode(',', $request->tags);
+        $tagsMulti = [];
+        foreach ($tagArr as $stringTag) {
+            $tagArrAssc["tag_name"] = $stringTag;
+            $tagsMulti[] = $tagArrAssc;
         }
+        
+        //create tags baru
+        foreach ($tagsMulti as $tagCheck) {
+            $tag = Tag::firstOrCreate($tagCheck);
+            $new_tanya->tags()->attach($tag->id);
+        }
+
+        return redirect('/pertanyaan');
     }
     public function show($id){
-        $tanya = TanyaModel::find_by_id($id);
+        // $tanya = TanyaModel::find_by_id($id);
+        $tanya = Tanya::find($id);
         $jawab = TanyaModel::find_by_id_pertanyaan($id);
-        return view('items.show', compact('tanya','jawab'));
+        return view('tanya.show', compact('tanya','jawab'));
     }
     public function edit($id){
         $tanya = TanyaModel::find_by_id($id);
-        return view('items.edit', compact('tanya'));
+        return view('tanya.edit', compact('tanya'));
     }
     public function update($id, Request $request){
         $tanya = TanyaModel::update($id, $request->all());

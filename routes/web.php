@@ -12,10 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('items.table');
+    return view('tanya.table');
 });
 Route::get('/data-tables', function () {
-    return view('items.datatable');
+    return view('tanya.datatable');
 });
 Route::group(['middleware'=>'auth'],function(){
 	Route::get('/pertanyaan','PertanyaanController@index');
