@@ -32,7 +32,6 @@ class TanyaModel {
 				->update([
 					'judul'=>$request["judul"],
 					'isi'=>$request["isi"],
-					'tag'=>$request["tag"],
 				]);
 		return $tanya;
 	}

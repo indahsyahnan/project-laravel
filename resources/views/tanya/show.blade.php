@@ -1,11 +1,15 @@
 @extends('adminlte.master')
 
+@section('title')
+Detail Pertanyaan
+@endsection
+
 @section('content')
 	<div class="ml-3 mt-3">
 		<h3>Detail Pertanyaan</h3>
 		<button type="button" class="btn btn-info" style="margin-bottom: 15px"><a href="/pertanyaan" style="color: white">Kembali</a></button>
 		<p>Judul Pertanyaan : {{$tanya->judul}} </p>
-		<p>Isi Pertanyaan : {{$tanya->isi}} </p>
+		<p>Isi Pertanyaan : {!! $tanya->isi !!} </p>
 		<!-- <p>Tag : {{$tanya->tag}} </p> -->
 		@foreach($tanya->tags as $tag)
             <a href="#" class="btn btn-success">{{ $tag->tag_name }}</a>

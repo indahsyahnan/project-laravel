@@ -61,7 +61,8 @@ class PertanyaanController extends Controller
         return view('tanya.show', compact('tanya','jawab'));
     }
     public function edit($id){
-        $tanya = TanyaModel::find_by_id($id);
+        // $tanya = TanyaModel::find_by_id($id);
+        $tanya = Tanya::find($id);
         return view('tanya.edit', compact('tanya'));
     }
     public function update($id, Request $request){

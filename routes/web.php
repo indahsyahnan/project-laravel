@@ -37,3 +37,7 @@ Route::get('/profile','ProfileController@index');
 Route::get('/pengguna','PenggunaController@index');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+     \UniSharp\LaravelFilemanager\Lfm::routes();
+ });

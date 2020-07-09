@@ -9,7 +9,7 @@
     <div class="card-body">
       <h6 class="card-title">Silahkan Klik Tombol Dibawah Ini !!</h6>
       <p class="card-text"></p>
-      <a href="/pertanyaan/create" class="btn btn-primary">Pertanyaan</a>
+      <a href="/pertanyaan/create" class="btn btn-primary">Buat Pertanyaan</a>
     </div>
   </div>
 @endsection

@@ -1,5 +1,9 @@
 @extends('adminlte.master')
 
+@section('title')
+Home
+@endsection
+
 @section('content')
 <div class="ml-3" style="margin-left: 15px; margin-right: 15px">
   <center><h3 style="padding-top: 10px; padding-bottom: 10px">Daftar Pertanyaan</h3></center>
@@ -11,7 +15,6 @@
             <th>No</th>
             <th>Judul</th>
             <th>Isi</th>
-            <th>Tag</th>
             <center><th>Actions</th></center>
             <th>Komentar</th>
             <th>Jawaban</th>
@@ -22,8 +25,7 @@
           <tr>
           	<td>{{$key+1}}</td>
           	<td>{{$tanya->judul}}</a></td>
-          	<td>{{$tanya->isi}}</td>
-            <td>{{$tanya->tag}}</td>
+          	<td>{!! $tanya->isi !!}</td>
             <td width="170px"><button type="button" class="btn btn-info"><a href="/pertanyaan/{{$tanya->id}}" style="color: white"><i class="far fa-list-alt"></i></a></button>
                 <button type="button" class="btn btn-warning"><a href="/pertanyaan/{{$tanya->id}}/edit" style="color: white"><i class="fas fa-pencil-alt"></i></a></button>
                 <form action="/pertanyaan/{{$tanya->id}}" method="post" style="display: inline;">
