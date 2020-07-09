@@ -16,8 +16,8 @@
       <input type="text" class="form-control" name="isi" placeholder="Masukkan Isi" id="isi">
     </div>
     <div class="form-group">
-      <label for="tag">Tag</label>
-      <input type="text" class="form-control" name="tag" placeholder="Masukkan Tag" id="tag">
+      <label for="tags">Tag</label>
+      <input type="text" class="form-control" name="tags" placeholder="Masukkan Tag" id="tags">
     </div>
     <button type="submit" class="btn btn-info">Submit</button>
   </form>
