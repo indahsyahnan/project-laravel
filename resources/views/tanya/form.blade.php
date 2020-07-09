@@ -15,7 +15,7 @@ Buat Pertanyaan
     <div class="form-group" style="padding-top : 20px">
       <center><h4>Tulis Pertanyaan Anda Disini</h4></center>
       <label for="judul">Judul</label>
-      <input type="text" class="form-control" name="judul" placeholder="Masukkan Judul" id="judul">
+      <input type="text" class="form-control" name="judul" placeholder="Masukkan Judul" id="judul" required>
     </div>
     <div class="form-group">
       <label for="isi">Isi</label>
@@ -23,7 +23,7 @@ Buat Pertanyaan
     </div>
     <div class="form-group">
       <label for="tags">Tag</label>
-      <input type="text" class="form-control" name="tags" placeholder="Masukkan Tag" id="tags">
+      <input type="text" class="form-control" name="tags" placeholder="Masukkan Tag" id="tags" required>
       <h9>Ket: Jika ingin memasukkan tag lebih dari satu, gunakan tanda koma (,)</h9>
     </div>
     <button type="submit" class="btn btn-info">Tanyakan</button>

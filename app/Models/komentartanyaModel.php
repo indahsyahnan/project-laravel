@@ -13,7 +13,7 @@ class KomentartanyaModel {
 		$tanya = DB::table('tanya')
 			->where('id','=',$pertanyaan_id)
 			->get();
-		return view('items.komentartanya',['komentartanya'=>$komentartanya->all(),'tanya'=>$tanya->all()]);
+		return view('tanya.komentartanya',['komentartanya'=>$komentartanya->all(),'tanya'=>$tanya->all()]);
 	}
 	public static function store($request){
 		DB::table('komentartanya')->insert($request);

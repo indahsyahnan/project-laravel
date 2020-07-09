@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use Illuminate\Support\Facades\DB;
+use App\Tanya;
 
 class JawabModel {
 	public static function get_all($pertanyaan_id){
@@ -10,10 +11,8 @@ class JawabModel {
 			->where('tanya.id','=',$pertanyaan_id)
 			->select('jawab.*')
 			->get();
-		$tanya = DB::table('tanya')
-			->where('id','=',$pertanyaan_id)
-			->get();
-		return view('items.jawabindex',['jawab'=>$jawab->all(),'tanya'=>$tanya->all()]);
+		$tanya = Tanya::find($pertanyaan_id);
+		return view('tanya.jawabindex',['jawab'=>$jawab->all(),'tanya'=>$tanya]);
 	}
 	public static function store($request){
 		DB::table('jawab')->insert($request);

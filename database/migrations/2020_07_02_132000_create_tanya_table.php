@@ -16,7 +16,7 @@ class CreateTanyaTable extends Migration
         Schema::create('tanya', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('judul');
-            $table->string('isi');
+            $table->longText('isi');
             $table->unsignedBigInteger('pengguna_id')->nullable();
             $table->foreign('pengguna_id')->references('id')->on('pengguna');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));

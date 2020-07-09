@@ -15,9 +15,9 @@ class CreateJawabTable extends Migration
     {
         Schema::create('jawab', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('isi');
+            $table->longText('isi');
             $table->unsignedBigInteger('pertanyaan_id');
-            $table->unsignedBigInteger('pengguna_id');
+            $table->unsignedBigInteger('pengguna_id')->nullable();
             $table->foreign('pengguna_id')->references('id')->on('pengguna');
             $table->foreign('pertanyaan_id')->references('id')->on('tanya');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));

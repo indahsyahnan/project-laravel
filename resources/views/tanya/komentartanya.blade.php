@@ -1,5 +1,9 @@
 @extends('adminlte.master')
 
+@section('title')
+Komentar
+@endsection
+
 @section('content')
 <div class="ml-3" style="margin-left: 15px; margin-right: 15px">
   <center><h4 style="padding-top: 10px; padding-bottom: 10px">Daftar Komentar</h4></center>

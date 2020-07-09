@@ -13,7 +13,7 @@ class KomentarjawabModel {
 		$jawab = DB::table('jawab')
 			->where('id','=',$jawaban_id)
 			->get();
-		return view('items.komentarjawab',['komentarjawab'=>$komentarjawab->all(),'jawab'=>$jawab->all()]);
+		return view('tanya.komentarjawab',['komentarjawab'=>$komentarjawab->all(),'jawab'=>$jawab->all()]);
 	}
 	public static function store($request){
 		DB::table('komentarjawab')->insert($request);
