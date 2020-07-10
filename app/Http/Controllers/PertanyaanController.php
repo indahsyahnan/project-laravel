@@ -36,9 +36,9 @@ class PertanyaanController extends Controller
 	   	}*/
         $new_tanya = Tanya::create([
             "judul"=>$request["judul"],
-            "isi"=>$request["isi"]
+            "isi"=>$request["isi"],
+            "pengguna_id"=>$request["pengguna_id"]
         ]);
-
         $tagArr = explode(',', $request->tags);
         $tagsMulti = [];
         foreach ($tagArr as $stringTag) {

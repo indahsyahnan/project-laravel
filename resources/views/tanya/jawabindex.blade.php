@@ -18,7 +18,7 @@ Jawaban
         <a href="#" class="btn btn-success">{{ $tag->tag_name }}</a>
       @endforeach
     </div>
-    <a class="text-decoration-none mt-2 mb-2" href="/pertanyaan">Kembali ke daftar Pertanyaan</a>
+    <a class="text-decoration-none mt-2 mb-2" href="/pertanyaan">Kembali ke Daftar Pertanyaan</a>
     <div class="jawaban mt-2">
     <form action="/jawaban/{{$tanya->id}}" method="POST">
       @csrf
@@ -26,6 +26,7 @@ Jawaban
         <label for="isi">Jawaban Anda</label>
         <input type="text" class="form-control" name="isi" placeholder="Masukkan Jawaban Anda" id="isi">
       </div>
+      <input type="number" class="form-control" name="pengguna_id" id="pengguna_id" value="{{ Auth::user()->id }}" readonly hidden>
       <button type="submit" class="btn btn-info">Submit</button>
     </form>
     <center><h4 style="padding-top: 10px; padding-bottom: 10px">Daftar Jawaban</h4></center>
@@ -34,6 +35,7 @@ Jawaban
         <tr>
           <th>No</th>
           <th>Isi</th>
+          <th>Tanggal Dibuat</th>
           <th>Komentar</th>
         </tr>
       </thead>
@@ -42,6 +44,7 @@ Jawaban
         <tr>
           <td>{{$key+1}}</td>
           <td>{{$jawab->isi}}</td>
+          <td>{{$jawab->created_at}}</td>
           <td><button type="button" class="btn btn-info"><a href="/komentarjawaban/{{$jawab->id}}" style="color: white">Komentar</a></button></td>
         </tr>
         @endforeach

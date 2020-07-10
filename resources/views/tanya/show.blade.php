@@ -24,7 +24,7 @@ Detail Pertanyaan
             <a href="#" class="btn btn-success">{{ $tag->tag_name }}</a>
             @endforeach
     	</div>
-		<a class="text-decoration-none ml-2 mt-2 mb-2" href="/pertanyaan">Kembali ke daftar Pertanyaan</a>
+		<a class="text-decoration-none ml-2 mt-2 mb-2" href="/pertanyaan">Kembali ke Daftar Pertanyaan</a>
 		<div class="float-right mt-n4">
 		<button type="button" class="btn btn-primary"><a href="/jawaban/{{ $tanya->id }}" style="color: white">Berikan Jawaban</a></button>
 		<button type="button" class="btn btn-primary ml-2"><a href="/komentarpertanyaan/{{ $tanya->id }}" style="color: white">Berikan Komentar</a></button>

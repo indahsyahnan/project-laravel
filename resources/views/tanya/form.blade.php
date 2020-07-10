@@ -21,6 +21,7 @@ Buat Pertanyaan
       <label for="isi">Isi</label>
       <textarea name="isi" class="form-control my-editor">{!! old('isi', $isi ?? '') !!}</textarea>
     </div>
+    <input type="number" class="form-control" name="pengguna_id" id="pengguna_id" value="{{ Auth::user()->id }}" readonly hidden>
     <div class="form-group">
       <label for="tags">Tag</label>
       <input type="text" class="form-control" name="tags" placeholder="Masukkan Tag" id="tags" required>

@@ -4,6 +4,7 @@ namespace App\Models;
 use Illuminate\Support\Facades\DB;
 
 class TanyaModel {
+	protected $guarded = [];
 	public static function get_all(){
 		$tanya = DB::table('tanya')->get();
 		return $tanya;

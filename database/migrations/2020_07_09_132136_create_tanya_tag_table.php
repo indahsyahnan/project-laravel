@@ -18,7 +18,7 @@ class CreateTanyaTagTable extends Migration
             $table->unsignedBigInteger('tanya_id');
             $table->unsignedBigInteger('tag_id');
 
-            $table->foreign('tanya_id')->references('id')->on('tanya');
+            $table->foreign('tanya_id')->references('id')->on('tanya')->onDelete('cascade');
             $table->foreign('tag_id')->references('id')->on('tags');
             $table->timestamps();
         });

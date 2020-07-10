@@ -17,8 +17,8 @@ class CreateJawabTable extends Migration
             $table->bigIncrements('id');
             $table->longText('isi');
             $table->unsignedBigInteger('pertanyaan_id');
-            $table->unsignedBigInteger('pengguna_id')->nullable();
-            $table->foreign('pengguna_id')->references('id')->on('pengguna');
+            $table->unsignedBigInteger('pengguna_id');
+            $table->foreign('pengguna_id')->references('id')->on('users');
             $table->foreign('pertanyaan_id')->references('id')->on('tanya');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
