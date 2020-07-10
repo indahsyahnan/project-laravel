@@ -37,6 +37,7 @@ Jawaban
           <th>Isi</th>
           <th>Tanggal Dibuat</th>
           <th>Komentar</th>
+          <th>Jawaban Terbaik</th>
         </tr>
       </thead>
       <tbody>
@@ -46,6 +47,24 @@ Jawaban
           <td>{{$jawab->isi}}</td>
           <td>{{$jawab->created_at}}</td>
           <td><button type="button" class="btn btn-info"><a href="/komentarjawaban/{{$jawab->id}}" style="color: white">Komentar</a></button></td>
+          <?php
+          if ($jawab->pertanyaan_id == $tanya->id && $tanya->pengguna_id == Auth::user()->id && $jawab->pengguna_id != $tanya->pengguna_id && $jawab->status == 0)
+          {
+          ?>
+          <td><button type="button" class="btn btn-info"><a href="/jawaban/{{$jawab->id}}/vote" style="color: white">Vote</a></button></td>
+          <?php
+          } else if ($jawab->status == 1)
+          {
+          ?>
+          <td><button type="button" class="btn btn-info"><i class="fa fa-check"></i></button></td>
+          <?php
+          } else if ($jawab->status ==2)
+          {
+          ?>
+           <td></td>
+          <?php
+          }
+          ?>
         </tr>
         @endforeach
       </tbody>

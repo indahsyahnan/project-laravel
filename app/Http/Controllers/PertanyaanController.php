@@ -14,7 +14,6 @@ class PertanyaanController extends Controller
         $this->middleware('auth')->except(['index']);
     }
     public function index(){
-    	//$tanya = TanyaModel::get_all();
         $tanya = Tanya::all();
     	return view('tanya.index',compact('tanya'));
     }
@@ -22,18 +21,6 @@ class PertanyaanController extends Controller
     	return view('tanya.form');
     }
     public function store(Request $request){
-	   	//$data = $request->all();
-	   	//unset($data["_token"]);
-	   	//$item = TanyaModel::save($data);
-        //Cara Eloquent
-        /*
-        $item = new Tanya;
-        $item->judul = $request["judul"];
-        $item->isi = $request["isi"];
-        $item->save();
-	   	if($item){
-	   		return redirect('/pertanyaan');
-	   	}*/
         $new_tanya = Tanya::create([
             "judul"=>$request["judul"],
             "isi"=>$request["isi"],
@@ -44,24 +31,20 @@ class PertanyaanController extends Controller
         foreach ($tagArr as $stringTag) {
             $tagArrAssc["tag_name"] = $stringTag;
             $tagsMulti[] = $tagArrAssc;
-        }
-        
+        } 
         //create tags baru
         foreach ($tagsMulti as $tagCheck) {
             $tag = Tag::firstOrCreate($tagCheck);
             $new_tanya->tags()->attach($tag->id);
         }
-
         return redirect('/pertanyaan');
     }
     public function show($id){
-        // $tanya = TanyaModel::find_by_id($id);
         $tanya = Tanya::find($id);
         $jawab = TanyaModel::find_by_id_pertanyaan($id);
         return view('tanya.show', compact('tanya','jawab'));
     }
     public function edit($id){
-        // $tanya = TanyaModel::find_by_id($id);
         $tanya = Tanya::find($id);
         return view('tanya.edit', compact('tanya'));
     }

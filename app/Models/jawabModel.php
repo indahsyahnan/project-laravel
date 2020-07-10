@@ -18,5 +18,4 @@ class JawabModel {
 		DB::table('jawab')->insert($request);
 		return JawabModel::get_all($request['pertanyaan_id']);
 	}
-	
 }

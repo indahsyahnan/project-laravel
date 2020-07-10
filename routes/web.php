@@ -31,6 +31,7 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::post('/komentarjawaban/{jawaban_id}','KomentarjawabanController@store');
 	Route::get('/jawaban/{pertanyaan_id}','JawabanController@index');
 	Route::post('/jawaban/{pertanyaan_id}','JawabanController@store');
+	Route::get('/jawaban/{id}/vote','JawabanController@vote');
 });
 Route::resource('jawab','JawabController');
 Route::get('/profile','ProfileController@index');
