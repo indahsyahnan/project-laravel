@@ -33,17 +33,34 @@ Jawaban
     <table class="table table-striped">
       <thead>
         <tr>
+          <th style="text-align: center;">Vote</th>
           <th>No</th>
           <th>Isi</th>
           <th>Tanggal Dibuat</th>
           <th>Komentar</th>
           <th>Jawaban Terbaik</th>
-          <th>Vote</th>
         </tr>
       </thead>
       <tbody>
         @foreach($jawab as $key => $jawab)
         <tr>
+          <td style="text-align: center">
+            @if($vote->contains('jawaban_id', $jawab->id) )
+            {{-- -------------------------- jumlah -------------------------- --}}
+            <label style="display: inline;"> {{$jawab->vote}} </label>
+            
+            @else
+            {{-- -------------------------- downvote -------------------------- --}}
+            <a class="btn" href="/jawaban/{{$jawab->id}}/downvote"> <i class="nav-icon fas fa-angle-down"></i></a>
+            
+            
+            {{-- -------------------------- jumlah -------------------------- --}}
+            <label style="display: inline;"> {{$jawab->vote}} </label>
+            
+            {{-- -------------------------- upvote -------------------------- --}}
+            <a class="btn" href="/jawaban/{{$jawab->id}}/upvote"> <i class="nav-icon fas fa-angle-up"></i></a>
+            @endif
+          </td>
           <td>{{$key+1}}</td>
           <td>{{$jawab->isi}}</td>
           <td>{{$jawab->created_at}}</td>
@@ -66,17 +83,6 @@ Jawaban
            <?php
           }
           ?>
-          <td>
-            {{-- -------------------------- downvote -------------------------- --}}
-            <a class="btn" href="/jawaban/{{$jawab->id}}/downvote"> <i class="nav-icon fas fa-angle-down"></i></a>
-
-            
-            {{-- -------------------------- jumlah -------------------------- --}}
-            <label style="display: inline;"> {{$jawab->vote}} </label>
-            
-            {{-- -------------------------- upvote -------------------------- --}}
-            <a class="btn" href="/jawaban/{{$jawab->id}}/upvote"> <i class="nav-icon fas fa-angle-up"></i></a>
-          </td>
         </tr>
         @endforeach
       </tbody>

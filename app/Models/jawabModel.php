@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Tanya;
 
 class JawabModel {
@@ -13,7 +14,9 @@ class JawabModel {
 			->orderBy('vote','desc')
 			->get();
 		$tanya = Tanya::find($pertanyaan_id);
-		return view('tanya.jawabindex',['jawab'=>$jawab->all(),'tanya'=>$tanya]);
+		$vote = DB::table('votejawab')->get();
+
+		return view('tanya.jawabindex',['jawab'=>$jawab->all(),'tanya'=>$tanya,'vote'=>$vote]);
 	}
 	public static function store($request){
 		DB::table('jawab')->insert($request);
