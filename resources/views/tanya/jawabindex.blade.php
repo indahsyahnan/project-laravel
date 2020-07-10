@@ -38,6 +38,7 @@ Jawaban
           <th>Tanggal Dibuat</th>
           <th>Komentar</th>
           <th>Jawaban Terbaik</th>
+          <th>Vote</th>
         </tr>
       </thead>
       <tbody>
@@ -50,21 +51,32 @@ Jawaban
           <?php
           if ($jawab->pertanyaan_id == $tanya->id && $tanya->pengguna_id == Auth::user()->id && $jawab->pengguna_id != $tanya->pengguna_id && $jawab->status == 0)
           {
-          ?>
+            ?>
           <td><button type="button" class="btn btn-info"><a href="/jawaban/{{$jawab->id}}/vote" style="color: white">Vote</a></button></td>
           <?php
           } else if ($jawab->status == 1)
           {
-          ?>
+            ?>
           <td><button type="button" class="btn btn-info"><i class="fa fa-check"></i></button></td>
           <?php
           } else if ($jawab->status ==2)
           {
-          ?>
+            ?>
            <td></td>
-          <?php
+           <?php
           }
           ?>
+          <td>
+            {{-- -------------------------- downvote -------------------------- --}}
+            <a class="btn" href="/jawaban/{{$jawab->id}}/downvote"> <i class="nav-icon fas fa-angle-down"></i></a>
+
+            
+            {{-- -------------------------- jumlah -------------------------- --}}
+            <label style="display: inline;"> {{$jawab->vote}} </label>
+            
+            {{-- -------------------------- upvote -------------------------- --}}
+            <a class="btn" href="/jawaban/{{$jawab->id}}/upvote"> <i class="nav-icon fas fa-angle-up"></i></a>
+          </td>
         </tr>
         @endforeach
       </tbody>

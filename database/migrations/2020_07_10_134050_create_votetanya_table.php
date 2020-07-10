@@ -17,7 +17,7 @@ class CreateVotetanyaTable extends Migration
             $table->bigIncrements('id');
 
             $table->unsignedBigInteger('pengguna_id');
-            $table->foreign('pengguna_id')->references('id')->on('pengguna')->onDelete('cascade');
+            $table->foreign('pengguna_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->unsignedBigInteger('pertanyaan_id');
             $table->foreign('pertanyaan_id')->references('id')->on('tanya')->onDelete('cascade');

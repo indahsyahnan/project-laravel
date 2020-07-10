@@ -10,6 +10,7 @@ class JawabModel {
 			->join('tanya','tanya.id','=','jawab.pertanyaan_id')
 			->where('tanya.id','=',$pertanyaan_id)
 			->select('jawab.*')
+			->orderBy('vote','desc')
 			->get();
 		$tanya = Tanya::find($pertanyaan_id);
 		return view('tanya.jawabindex',['jawab'=>$jawab->all(),'tanya'=>$tanya]);

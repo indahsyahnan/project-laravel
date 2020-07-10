@@ -21,6 +21,7 @@ class CreateJawabTable extends Migration
             $table->unsignedBigInteger('pengguna_id');
             $table->foreign('pengguna_id')->references('id')->on('users');
             $table->foreign('pertanyaan_id')->references('id')->on('tanya');
+            $table->integer('vote')->default(0);
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

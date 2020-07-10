@@ -17,7 +17,7 @@ class CreateVotejawabTable extends Migration
             $table->bigIncrements('id');
             
             $table->unsignedBigInteger('pengguna_id');
-            $table->foreign('pengguna_id')->references('id')->on('pengguna')->onDelete('cascade');
+            $table->foreign('pengguna_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->unsignedBigInteger('jawaban_id');
             $table->foreign('jawaban_id')->references('id')->on('jawab')->onDelete('cascade');
