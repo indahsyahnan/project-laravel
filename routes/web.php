@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('tanya.dashboard');
+    return view('tanya.welcome');
 });
 
 Route::group(['middleware'=>'auth'],function(){

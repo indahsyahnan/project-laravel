@@ -22,6 +22,6 @@ class JawabanController extends Controller
 	}
 	public function vote($id){
     	$vote = VoteModel::update($id);
-        return redirect('/pertanyaan');
+        return redirect()->back();
     }
 }

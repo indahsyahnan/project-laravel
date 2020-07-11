@@ -27,8 +27,34 @@ Detail Pertanyaan
 		<a class="text-decoration-none ml-2 mt-2 mb-2" href="/pertanyaan">Kembali ke Daftar Pertanyaan</a>
 		<div class="float-right mt-n4">
 		<button type="button" class="btn btn-primary"><a href="/jawaban/{{ $tanya->id }}" style="color: white">Berikan Jawaban</a></button>
-		<button type="button" class="btn btn-primary ml-2"><a href="/komentarpertanyaan/{{ $tanya->id }}" style="color: white">Berikan Komentar</a></button>
 		</div>
+
+		<h4 class="text-right">Daftar Komentar</h4>
+			@empty($komentartanya)
+				<div class="card bg-white card-success card-outline">
+					<div class="card-body">
+						<p class="card-text">Belum ada Komentar</p>
+					</div>
+				</div>
+			@endempty
+			
+			@foreach($komentartanya as $komentar)
+			<div class="komentar mt-2" style="margin-left: 30%;">
+			<div class="card bg-white card-success card-outline">
+				<div class="card-body container-fluid">
+				<p class="card-text">{{ $komentar->isi }}</p>
+				</div>
+			</div>
+			</div>
+			@endforeach
+			<form action="/komentarpertanyaan/{{$tanya->id}}" method="POST" style="margin-left: 5px; margin-right: 5px">
+				@csrf
+				<div class="form-group">
+				<label for="isi">Komentar Anda</label>
+				<input type="text" class="form-control" name="isi" placeholder="Masukkan Komentar Anda" id="isi">
+				</div>
+				<button type="submit" class="btn btn-info mb-2">Submit</button>
+			</form>
 		<!-- <center><h4 style="padding-top: 7px; padding-bottom: 7px">Jawab Disini</h4></center>
 		<form action="/jawaban/{{$tanya->id}}" method="POST" style="margin-left: 5px; margin-right: 5px">
 			@csrf

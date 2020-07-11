@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\TanyaModel; // Custom Model
 use App\Tanya; // Eloquent Model
 use App\Models\Tag;
+use App\Models\komentartanyaModel;
 
 class PertanyaanController extends Controller
 {
@@ -40,12 +41,13 @@ class PertanyaanController extends Controller
             $tag = Tag::firstOrCreate($tagCheck);
             $new_tanya->tags()->attach($tag->id);
         }
-        return redirect('/pertanyaan');
+        return redirect('/pertanyaan')->with('success', 'Pertanyaan Berhasil ditambahkan!');
     }
     public function show($id){
         $tanya = Tanya::find($id);
         $jawab = TanyaModel::find_by_id_pertanyaan($id);
-        return view('tanya.show', compact('tanya','jawab'));
+        $komentartanya = komentartanyaModel::find_by_id($id);
+        return view('tanya.show', compact('tanya','jawab', 'komentartanya'));
     }
     public function edit($id){
         $tanya = Tanya::find($id);
@@ -53,11 +55,11 @@ class PertanyaanController extends Controller
     }
     public function update($id, Request $request){
         $tanya = TanyaModel::update($id, $request->all());
-        return redirect('/pertanyaan');
+        return redirect('/pertanyaan')->with('success', 'Pertanyaan Berhasil diubah!');
     }
     public function destroy($id){
         $deleted = TanyaModel::destroy($id);
-        return redirect('/pertanyaan'); 
+        return redirect('/pertanyaan')->with('success', 'Pertanyaan Berhasil dihapus!'); 
     }
 }
 
