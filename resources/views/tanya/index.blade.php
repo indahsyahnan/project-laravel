@@ -74,7 +74,7 @@ Home
             @endif
             <button type="button" class="btn btn-info"><a href="/pertanyaan/{{$pertanyaan->id}}" style="color: white"><i class="far fa-list-alt"></i></a></button>
             <button type="button" class="btn btn-info"><a href="/komentarpertanyaan/{{$pertanyaan->id}}" style="color: white">Komentar</a></button>
-            @if($vote->contains('jawaban_id', $pertanyaan->id) || Auth::user()->id == $pertanyaan->pengguna_id)
+            @if($vote->contains('pertanyaan_id', $pertanyaan->id) || Auth::user()->id == $pertanyaan->pengguna_id)
               <a class="btn" href="#"> <i class="nav-icon fas fa-angle-down"></i></a>
               <label style="display: inline;"> {{$pertanyaan->vote}} </label>
               <a class="btn" href="#"> <i class="nav-icon fas fa-angle-up"></i></a>
