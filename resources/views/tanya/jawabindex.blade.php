@@ -48,41 +48,31 @@ Jawaban
             @if($vote->contains('jawaban_id', $jawab->id) || Auth::user()->id == $jawab->pengguna_id)
             {{-- -------------------------- jumlah -------------------------- --}}
             <label> {{$jawab->vote}} </label>
-            
             @else
             {{-- -------------------------- downvote -------------------------- --}}
             <a class="btn" href="/jawaban/{{$jawab->id}}/downvote"> <i class="nav-icon fas fa-angle-down"></i></a>
-            
-            
             {{-- -------------------------- jumlah -------------------------- --}}
             <label style="display: inline;"> {{$jawab->vote}} </label>
-            
             {{-- -------------------------- upvote -------------------------- --}}
             <a class="btn" href="/jawaban/{{$jawab->id}}/upvote"> <i class="nav-icon fas fa-angle-up"></i></a>
             @endif
           </td>
+
           <td>{{$key+1}}</td>
           <td>{{$jawab->isi}}</td>
           <td>{{$jawab->created_at}}</td>
+          
           <td><button type="button" class="btn btn-info"><a href="/komentarjawaban/{{$jawab->id}}" style="color: white">Komentar</a></button></td>
-          <?php
-          if ($jawab->pertanyaan_id == $tanya->id && $tanya->pengguna_id == Auth::user()->id && $jawab->pengguna_id != $tanya->pengguna_id && $jawab->status == 0)
-          {
-            ?>
-          <td><button type="button" class="btn btn-info"><a href="/jawaban/{{$jawab->id}}/vote" style="color: white">Vote</a></button></td>
-          <?php
-          } else if ($jawab->status == 1)
-          {
-            ?>
-          <td><button type="button" class="btn btn-info"><i class="fa fa-check"></i></button></td>
-          <?php
-          } else if ($jawab->status ==2)
-          {
-            ?>
-           <td></td>
-           <?php
-          }
-          ?>
+          <td>
+            @if ($jawab->pertanyaan_id == $tanya->id && $tanya->pengguna_id == Auth::user()->id && $jawab->pengguna_id != $tanya->pengguna_id && $jawab->status == 0)
+              <button type="button" class="btn btn-info"><a href="/jawaban/{{$jawab->id}}/vote" style="color: white">Vote</a></button>
+            @elseif ($jawab->status == 1)
+              <button type="button" class="btn btn-info"><i class="fa fa-check"></i></button>
+            @elseif ($jawab->status ==2)
+              
+            @endif
+          </td>
+        
         </tr>
         @endforeach
       </tbody>
