@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\JawabModel;
 use Illuminate\Foundation\Console\Presents\React;
+use App\Models\VoteModel;
 use DB;
 
 class JawabanController extends Controller
@@ -18,5 +19,9 @@ class JawabanController extends Controller
 	   	unset($request['_token']);
 	   	$request['pertanyaan_id']=$pertanyaan_id;
 	   	return JawabModel::store($request);
+	}
+	public function vote($id){
+    	$vote = VoteModel::update($id);
+        return redirect('/pertanyaan');
     }
 }

@@ -45,9 +45,9 @@ Jawaban
         @foreach($jawab as $key => $jawab)
         <tr>
           <td style="text-align: center">
-            @if($vote->contains('jawaban_id', $jawab->id) )
+            @if($vote->contains('jawaban_id', $jawab->id) || Auth::user()->id == $jawab->pengguna_id)
             {{-- -------------------------- jumlah -------------------------- --}}
-            <label style="display: inline;"> {{$jawab->vote}} </label>
+            <label> {{$jawab->vote}} </label>
             
             @else
             {{-- -------------------------- downvote -------------------------- --}}
