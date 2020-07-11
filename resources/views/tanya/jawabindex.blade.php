@@ -58,16 +58,14 @@ Jawaban
                 </div>
 
                 <div class="col-sm-2" style="text-align: center">
-                  @if($vote->contains('jawaban_id', $jawaban->id) || Auth::user()->id == $jawaban->pengguna_id)
-                  {{-- -------------------------- jumlah -------------------------- --}}
-                  <label> {{$jawaban->vote}} </label>
+                    @if($vote->contains('jawaban_id', $jawaban->id) || Auth::user()->id == $jawaban->pengguna_id)
+                    <a class="btn" href="#"> <i class="nav-icon fas fa-angle-down"></i></a>
+                    <label> {{$jawaban->vote}} </label>
+                    <a class="btn" href="#"> <i class="nav-icon fas fa-angle-up"></i></a>  
                   @else
-                  {{-- -------------------------- downvote -------------------------- --}}
-                  <a class="btn" href="/jawaban/{{$jawaban->id}}/downvote"> <i class="nav-icon fas fa-angle-down"></i></a>
-                  {{-- -------------------------- jumlah -------------------------- --}}
-                  <label style="display: inline;"> {{$jawaban->vote}} </label>
-                  {{-- -------------------------- upvote -------------------------- --}}
-                  <a class="btn" href="/jawaban/{{$jawaban->id}}/upvote"> <i class="nav-icon fas fa-angle-up"></i></a>
+                    <a class="btn" href="/jawaban/{{$jawaban->id}}/downvote"> <i class="nav-icon fas fa-angle-down"></i></a>
+                    <label style="display: inline;"> {{$jawaban->vote}} </label>
+                    <a class="btn" href="/jawaban/{{$jawaban->id}}/upvote"> <i class="nav-icon fas fa-angle-up"></i></a>
                   @endif
                 </div>
               </div>
