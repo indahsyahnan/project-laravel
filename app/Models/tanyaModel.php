@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 class TanyaModel {
 	protected $guarded = [];
 	public static function get_all(){
-		$tanya = DB::table('tanya')->get();
+		$tanya = DB::table('tanya')->orderBy('vote','desc')->get();
 		return $tanya;
 	}
 	public static function save($data){

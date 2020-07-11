@@ -81,7 +81,7 @@ class VoteModel {
 
 	public static function downtanya($id){
 		$pertanyaanSekarang = DB::table('tanya')->where('id',$id)->first();
-		DB::table('tanya')->where('id',$id)->update(['vote'=>$pertanyaanSekarang->vote +1]);
+		DB::table('tanya')->where('id',$id)->update(['vote'=>$pertanyaanSekarang->vote -1]);
 		//Ganti status sekarang jadi 1
 		DB::table('votetanya')->insertOrIgnore(['pengguna_id'=>Auth::user()->id, 'pertanyaan_id'=>$id,'jenis'=>-1]);
 		//Ambil data user
