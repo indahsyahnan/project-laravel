@@ -26,6 +26,8 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::get('/pertanyaan/{id}/edit','PertanyaanController@edit');
 	Route::put('/pertanyaan/{id}','PertanyaanController@update');
 	Route::delete('/pertanyaan/{id}','PertanyaanController@destroy');
+	Route::get('/pertanyaan/{id}/upvote','VoteController@uptanya');
+	Route::get('/pertanyaan/{id}/downvote','VoteController@downtanya');
 
 	/* ------------------------ komentar ------------------------ */
 	Route::get('/komentarpertanyaan/{pertanyaan_id}','KomentarpertanyaanController@index');

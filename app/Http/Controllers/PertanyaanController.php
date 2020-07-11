@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\TanyaModel; // Custom Model
 use App\Tanya; // Eloquent Model
@@ -14,8 +16,9 @@ class PertanyaanController extends Controller
         $this->middleware('auth')->except(['index']);
     }
     public function index(){
-        $tanya = Tanya::all();
-    	return view('tanya.index',compact('tanya'));
+        $tanya = TanyaModel::get_all()->all();
+        $vote = DB::table('votetanya')->where('pengguna_id',Auth::user()->id)->get();
+    	return view('tanya.index',compact('tanya','vote'));
     }
     public function create(){
     	return view('tanya.form');
