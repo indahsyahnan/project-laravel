@@ -27,7 +27,7 @@ Buat Pertanyaan
       <input type="text" class="form-control" name="tags" placeholder="Masukkan Tag" id="tags" required>
       <h9>Ket: Jika ingin memasukkan tag lebih dari satu, gunakan tanda koma (,)</h9>
     </div>
-    <button type="submit" class="btn btn-info">Tanyakan</button>
+    <button type="submit" class="btn btn-info mb-2">Tanyakan</button>
     <a class="text-decoration-none ml-2 mt-2" href="/pertanyaan">Kembali ke daftar Pertanyaan</a>
   </form>
 </div>

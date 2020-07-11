@@ -21,4 +21,9 @@ class Tanya extends Model
     {
         return $this->belongsToMany('App\Models\Tag', 'tanya_tag', 'tanya_id', 'tag_id');
     }
+
+    public function users()
+    {
+        return $this->belongsTo('App\User', 'pengguna_id', 'id');
+    }
 }

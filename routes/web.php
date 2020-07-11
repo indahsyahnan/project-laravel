@@ -12,11 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('tanya.table');
+    return view('tanya.dashboard');
 });
-Route::get('/data-tables', function () {
-    return view('tanya.datatable');
-});
+
 Route::group(['middleware'=>'auth'],function(){
 	/* ------------------------ pertanyaan ------------------------ */
 	Route::get('/pertanyaan','PertanyaanController@index');

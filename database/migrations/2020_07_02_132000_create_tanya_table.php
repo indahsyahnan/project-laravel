@@ -18,7 +18,7 @@ class CreateTanyaTable extends Migration
             $table->string('judul');
             $table->longText('isi');
             $table->unsignedBigInteger('pengguna_id');
-            $table->foreign('pengguna_id')->references('id')->on('users');
+            $table->foreign('pengguna_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('vote')->default(0);
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')); 
