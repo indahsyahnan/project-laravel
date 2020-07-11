@@ -15,7 +15,6 @@ class JawabModel {
 			->get();
 		$tanya = Tanya::find($pertanyaan_id);
 		$vote = DB::table('votejawab')->where('pengguna_id',Auth::user()->id)->get();
-
 		return view('tanya.jawabindex',['jawab'=>$jawab->all(),'tanya'=>$tanya,'vote'=>$vote]);
 	}
 	public static function store($request){

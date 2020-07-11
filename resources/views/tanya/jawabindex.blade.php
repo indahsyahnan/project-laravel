@@ -30,7 +30,7 @@ Jawaban
       <button type="submit" class="btn btn-info">Submit</button>
     </form>
     <center><h4 style="padding-top: 10px; padding-bottom: 10px">Daftar Jawaban</h4></center>
-    <table class="table table-striped">
+    {{-- <table class="table table-striped">
       <thead>
         <tr>
           <th style="text-align: center;">Vote</th>
@@ -42,33 +42,29 @@ Jawaban
         </tr>
       </thead>
       <tbody>
-        @foreach($jawab as $key => $jawab)
+        @foreach($jawab as $key => $jawaban)
         <tr>
           <td style="text-align: center">
-            @if($vote->contains('jawaban_id', $jawab->id) || Auth::user()->id == $jawab->pengguna_id)
-            {{-- -------------------------- jumlah -------------------------- --}}
-            <label> {{$jawab->vote}} </label>
+            @if($vote->contains('jawaban_id', $jawaban->id) || Auth::user()->id == $jawaban->pengguna_id)
+            <label> {{$jawaban->vote}} </label>
             @else
-            {{-- -------------------------- downvote -------------------------- --}}
-            <a class="btn" href="/jawaban/{{$jawab->id}}/downvote"> <i class="nav-icon fas fa-angle-down"></i></a>
-            {{-- -------------------------- jumlah -------------------------- --}}
-            <label style="display: inline;"> {{$jawab->vote}} </label>
-            {{-- -------------------------- upvote -------------------------- --}}
-            <a class="btn" href="/jawaban/{{$jawab->id}}/upvote"> <i class="nav-icon fas fa-angle-up"></i></a>
+            <a class="btn" href="/jawaban/{{$jawaban->id}}/downvote"> <i class="nav-icon fas fa-angle-down"></i></a>
+            <label style="display: inline;"> {{$jawaban->vote}} </label>
+            <a class="btn" href="/jawaban/{{$jawaban->id}}/upvote"> <i class="nav-icon fas fa-angle-up"></i></a>
             @endif
           </td>
 
           <td>{{$key+1}}</td>
-          <td>{{$jawab->isi}}</td>
-          <td>{{$jawab->created_at}}</td>
-          
-          <td><button type="button" class="btn btn-info"><a href="/komentarjawaban/{{$jawab->id}}" style="color: white">Komentar</a></button></td>
+          <td>{{$jawaban->isi}}</td>
+          <td>{{$jawaban->created_at}}</td>
+
+          <td><button type="button" class="btn btn-info"><a href="/komentarjawaban/{{$jawaban->id}}" style="color: white">Komentar</a></button></td>
           <td>
-            @if ($jawab->pertanyaan_id == $tanya->id && $tanya->pengguna_id == Auth::user()->id && $jawab->pengguna_id != $tanya->pengguna_id && $jawab->status == 0)
-              <button type="button" class="btn btn-info"><a href="/jawaban/{{$jawab->id}}/vote" style="color: white">Vote</a></button>
-            @elseif ($jawab->status == 1)
+            @if ($jawaban->pertanyaan_id == $tanya->id && $tanya->pengguna_id == Auth::user()->id && $jawaban->pengguna_id != $tanya->pengguna_id && $jawaban->status == 0)
+              <button type="button" class="btn btn-info"><a href="/jawaban/{{$jawaban->id}}/vote" style="color: white">Vote</a></button>
+            @elseif ($jawaban->status == 1)
               <button type="button" class="btn btn-info"><i class="fa fa-check"></i></button>
-            @elseif ($jawab->status ==2)
+            @elseif ($jawaban->status ==2)
               
             @endif
           </td>
@@ -76,7 +72,50 @@ Jawaban
         </tr>
         @endforeach
       </tbody>
-    </table>
+    </table> --}}
+    @empty($jawab)
+        <div class="card bg-white card-primary card-outline m-3">
+            <div class="card-body">
+                <p class="card-text">Belum ada jawaban</p>
+            </div>
+        </div>
+    @endempty
+
+    @foreach ($jawab as $key => $jawaban)
+        <div class="card bg-white card-primary card-outline m-3">
+            <div class="card-body container-fluid">
+              <div class="row">
+                <div class="col-1">
+                  @if ($jawaban->pertanyaan_id == $tanya->id && $tanya->pengguna_id == Auth::user()->id && $jawaban->pengguna_id != $tanya->pengguna_id && $jawaban->status == 0)
+                    <button type="button" class="btn btn-info"><a href="/jawaban/{{$jawaban->id}}/vote" style="color: white">Vote</a></button>
+                  @elseif ($jawaban->status == 1)
+                    <button type="button" class="btn btn-info"><i class="fa fa-check"></i></button>
+                  @elseif ($jawaban->status ==2)
+                    
+                  @endif
+                </div>
+
+                <div class="col">
+                  <p class="card-text">{!!$jawaban->isi!!}</p>
+                </div>
+
+                <div class="col-sm-2" style="text-align: center">
+                  @if($vote->contains('jawaban_id', $jawaban->id) || Auth::user()->id == $jawaban->pengguna_id)
+                  {{-- -------------------------- jumlah -------------------------- --}}
+                  <label> {{$jawaban->vote}} </label>
+                  @else
+                  {{-- -------------------------- downvote -------------------------- --}}
+                  <a class="btn" href="/jawaban/{{$jawaban->id}}/downvote"> <i class="nav-icon fas fa-angle-down"></i></a>
+                  {{-- -------------------------- jumlah -------------------------- --}}
+                  <label style="display: inline;"> {{$jawaban->vote}} </label>
+                  {{-- -------------------------- upvote -------------------------- --}}
+                  <a class="btn" href="/jawaban/{{$jawaban->id}}/upvote"> <i class="nav-icon fas fa-angle-up"></i></a>
+                  @endif
+                </div>
+              </div>
+            </div>
+        </div>
+    @endforeach
     </div>
 </div>
 @endsection
