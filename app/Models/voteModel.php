@@ -19,7 +19,7 @@ class VoteModel {
 			->first();
 		//$vote = DB::table('user')->where('id',$jawabanSekarang->pengguna_id)->first();
 		//Ganti reputasi
-		$vote = DB::table('users')->where('id',$jawabanSekarang->pengguna_id)->update(['reputasi'=>$user->reputasi + 10]);
+		$vote = DB::table('users')->where('id',$jawabanSekarang->pengguna_id)->update(['reputasi'=>$user->reputasi + 15]);
 		return $vote;
 	}
 
