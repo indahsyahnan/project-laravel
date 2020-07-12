@@ -55,7 +55,11 @@ Dashboard
               </tr>
               <tr>
                 <td>
-                  <a class="btn mt-n2" href="/pertanyaan/{{$pertanyaan->id}}/downvote" style="font-size: 30px;"> <i class="nav-icon fas fa-angle-down"></i></a>
+                  @if (Auth::user()->reputasi >= 15)
+                    <a class="btn mt-n2" href="/pertanyaan/{{$pertanyaan->id}}/downvote" style="font-size: 30px;"> <i class="nav-icon fas fa-angle-down"></i></a>
+                  @else
+                    <a class="btn mt-n2" href="#" style="font-size: 30px;"> <i class="nav-icon fas fa-angle-down"></i></a>
+                  @endif
                 </td>
               </tr>
             </table>

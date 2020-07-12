@@ -54,12 +54,16 @@ Jawaban
                   </div>
 
                   <div class="col-sm-2" style="text-align: center">
-                      @if($vote->contains('jawaban_id', $jawaban->id) || Auth::user()->id == $jawaban->pengguna_id)
+                    @if($vote->contains('jawaban_id', $jawaban->id) || Auth::user()->id == $jawaban->pengguna_id)
                       <a class="btn" href="#"> <i class="nav-icon fas fa-angle-down"></i></a>
                       <label> {{$jawaban->vote}} </label>
                       <a class="btn" href="#"> <i class="nav-icon fas fa-angle-up"></i></a>  
-                    @else
-                      <a class="btn" href="/jawaban/{{$jawaban->id}}/downvote"> <i class="nav-icon fas fa-angle-down"></i></a>
+                      @else
+                        @if (Auth::user()->reputasi >= 15)
+                          <a class="btn" href="/jawaban/{{$jawaban->id}}/downvote"> <i class="nav-icon fas fa-angle-down"></i></a>
+                        @else
+                          <a class="btn" href="#"> <i class="nav-icon fas fa-angle-down"></i></a>
+                        @endif
                       <label style="display: inline;"> {{$jawaban->vote}} </label>
                       <a class="btn" href="/jawaban/{{$jawaban->id}}/upvote"> <i class="nav-icon fas fa-angle-up"></i></a>
                     @endif
