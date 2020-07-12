@@ -6,14 +6,8 @@ Detail Pertanyaan
 
 @section('content')
 	<div class="ml-3 mr-3">
-		<!-- <h3>Detail Pertanyaan</h3>
-		<button type="button" class="btn btn-info" style="margin-bottom: 15px"><a href="/pertanyaan" style="color: white">Kembali</a></button>
-		<p>Judul Pertanyaan : {{$tanya->judul}} </p>
-		<p>Isi Pertanyaan : {!! $tanya->isi !!} </p>
-		@foreach($tanya->tags as $tag)
-            <a href="#" class="btn btn-success">{{ $tag->tag_name }}</a>
-        @endforeach -->
 		<h2>{{ $tanya->judul }}</h2>
+		<p class="text-muted">{{ $tanya->users->name}} | Dibuat {{ $tanya->created_at->diffForHumans() }} | Diubah {{ $tanya->updated_at->diffForHumans() }}</p>
 		<div class="card mt-1">
             <div class="card-body">
                 <p class="card-text mt-2">{!! $tanya->isi !!}</p>
@@ -26,7 +20,7 @@ Detail Pertanyaan
     	</div>
 		<a class="text-decoration-none ml-2 mt-2 mb-2" href="/pertanyaan">Kembali ke Daftar Pertanyaan</a>
 		<div class="float-right mt-n4">
-		<button type="button" class="btn btn-primary"><a href="/jawaban/{{ $tanya->id }}" style="color: white">Berikan Jawaban</a></button>
+			<button type="button" class="btn btn-primary"><a href="/jawaban/{{ $tanya->id }}" style="color: white">Berikan Jawaban</a></button>
 		</div>
 
 		<h4 class="text-right">Daftar Komentar</h4>
@@ -40,18 +34,23 @@ Detail Pertanyaan
 			
 			@foreach($komentartanya as $komentar)
 			<div class="komentar mt-2" style="margin-left: 30%;">
-			<div class="card bg-white card-success card-outline">
-				<div class="card-body container-fluid">
-				<p class="card-text">{{ $komentar->isi }}</p>
+				<div class="card bg-white card-success card-outline">
+					<div class="card-body container-fluid">
+					<p class="card-text">{{ $komentar->isi }}</p>
+					</div>
 				</div>
-			</div>
 			</div>
 			@endforeach
 			<form action="/komentarpertanyaan/{{$tanya->id}}" method="POST" style="margin-left: 5px; margin-right: 5px">
 				@csrf
-				<div class="form-group">
-				<label for="isi">Komentar Anda</label>
-				<input type="text" class="form-control" name="isi" placeholder="Masukkan Komentar Anda" id="isi">
+				<div class="form-group has-feedback{{ $errors->has('isi') ? 'has-error' : '' }}">
+					<label for="isi">Komentar Anda</label>
+					<input type="text" class="form-control" name="isi" placeholder="Masukkan Komentar Anda" id="isi" value="{{ old('isi') }}">
+					@if( $errors->has('isi'))
+						<span class="help-block">
+						<p>{{ $errors->first('isi') }}</p>
+						</span>
+					@endif
 				</div>
 				<button type="submit" class="btn btn-info mb-2">Submit</button>
 			</form>

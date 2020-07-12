@@ -17,7 +17,8 @@ class PertanyaanController extends Controller
         $this->middleware('auth')->except(['index']);
     }
     public function index(){
-        $tanya = TanyaModel::get_all()->all();
+        $tanya = Tanya::latest()->paginate(5);
+        // $tanya = TanyaModel::get_all()->all();
         $vote = DB::table('votetanya')->where('pengguna_id',Auth::user()->id)->get();
     	return view('tanya.index',compact('tanya','vote'));
     }
@@ -25,6 +26,11 @@ class PertanyaanController extends Controller
     	return view('tanya.form');
     }
     public function store(Request $request){
+        $this->validate(request(), [
+            "judul" => "required",
+            "isi" => "required"
+        ]);
+
         $new_tanya = Tanya::create([
             "judul"=>$request["judul"],
             "isi"=>$request["isi"],
@@ -54,6 +60,11 @@ class PertanyaanController extends Controller
         return view('tanya.edit', compact('tanya'));
     }
     public function update($id, Request $request){
+        $this->validate(request(), [
+            "judul" => "required",
+            "isi" => "required"
+        ]);
+        
         $tanya = TanyaModel::update($id, $request->all());
         return redirect('/pertanyaan')->with('success', 'Pertanyaan Berhasil diubah!');
     }

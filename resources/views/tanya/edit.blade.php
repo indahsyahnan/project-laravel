@@ -13,14 +13,24 @@ Edit pertanyaan
   <form action="/pertanyaan/{{$tanya->id}}" method="POST" style="margin-left: 15px; margin-right: 15px">
     @csrf
     @method('PUT')
-    <div class="form-group" style="padding-top : 20px">
+    <div class="form-group has-feedback{{ $errors->has('judul') ? 'has-error' : '' }}" style="padding-top : 20px">
       <center><h4>Edit Pertanyaan</h4></center>
       <label for="judul">Judul</label>
       <input type="text" class="form-control" name="judul" value="{{$tanya->judul}}" id="judul">
+      @if( $errors->has('judul'))
+        <span class="help-block">
+          <p>{{ $errors->first('judul') }}</p>
+        </span>
+      @endif
     </div>
-    <div class="form-group">
+    <div class="form-group has-feedback{{ $errors->has('isi') ? 'has-error' : '' }}">
       <label for="isi">Isi</label>
       <textarea name="isi" class="form-control my-editor">{{ $tanya->isi }}</textarea>
+      @if( $errors->has('isi'))
+        <span class="help-block">
+          <p>{{ $errors->first('isi') }}</p>
+        </span>
+      @endif
     </div>
     <button type="submit" class="btn btn-primary">Simpan</button>
     <a class="text-decoration-none ml-2 mt-2" href="/pertanyaan">Kembali ke daftar Pertanyaan</a>

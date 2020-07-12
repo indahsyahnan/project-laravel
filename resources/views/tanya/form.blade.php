@@ -12,19 +12,29 @@ Buat Pertanyaan
 <div class="ml-3">
   <form action="/pertanyaan" method="POST" style="margin-left: 15px; margin-right: 15px">
     @csrf
-    <div class="form-group" style="padding-top : 20px">
+    <div class="form-group has-feedback{{ $errors->has('judul') ? 'has-error' : '' }}" style="padding-top : 20px">
       <center><h4>Tulis Pertanyaan Anda Disini</h4></center>
       <label for="judul">Judul</label>
-      <input type="text" class="form-control" name="judul" placeholder="Masukkan Judul" id="judul" required>
+      <input type="text" class="form-control" name="judul" placeholder="Masukkan Judul" id="judul" value="{{ old('judul') }}">
+      @if( $errors->has('judul'))
+        <span class="help-block">
+          <p>{{ $errors->first('judul') }}</p>
+        </span>
+      @endif
     </div>
-    <div class="form-group">
+    <div class="form-group has-feedback{{ $errors->has('isi') ? 'has-error' : '' }}">
       <label for="isi">Isi</label>
       <textarea name="isi" class="form-control my-editor">{!! old('isi', $isi ?? '') !!}</textarea>
+      @if( $errors->has('isi'))
+        <span class="help-block">
+          <p>{{ $errors->first('isi') }}</p>
+        </span>
+      @endif
     </div>
     <input type="number" class="form-control" name="pengguna_id" id="pengguna_id" value="{{ Auth::user()->id }}" readonly hidden>
     <div class="form-group">
       <label for="tags">Tag</label>
-      <input type="text" class="form-control" name="tags" placeholder="Masukkan Tag" id="tags" required>
+      <input type="text" class="form-control" name="tags" placeholder="Masukkan Tag" id="tags">
       <h9>Ket: Jika ingin memasukkan tag lebih dari satu, gunakan tanda koma (,)</h9>
     </div>
     <button type="submit" class="btn btn-info mb-2">Tanyakan</button>

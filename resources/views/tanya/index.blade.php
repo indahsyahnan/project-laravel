@@ -7,13 +7,19 @@ Dashboard
 @section('content')
 <div class="ml-3" style="margin-left: 15px; margin-right: 15px">
   <center><h3 style="padding-top: 10px; padding-bottom: 10px">Daftar Pertanyaan</h3></center>
-    <button type="button" class="btn btn-info" style="margin-bottom: 15px">
-    <a href="/pertanyaan/create" style="color: white">Buat Pertanyaan Baru</a></button>
-    <br>
+  <!-- <div class="row">
+    <div class="col-10"> -->
+      <button type="button" class="btn btn-info" style="margin-bottom: 15px">
+      <a href="/pertanyaan/create" style="color: white">Buat Pertanyaan Baru</a></button>
+    <!-- </div>
+    <div class="col-2"> -->
+    <div class="float-right">
+      {!! $tanya->render() !!}
+    </div>
   
     @foreach($tanya as $key => $pertanyaan)
 
-      <div class="card mb-3">
+      <div class="card mb-3 mt-1">
         <div class="card-body">
           <div class="row">
           <div class="col-1">
@@ -60,8 +66,9 @@ Dashboard
               <h1 class="card-title font-weight-bold"><a class="text-decoration-none text-body" href="/pertanyaan/{{$pertanyaan->id}}">{{ $pertanyaan -> judul }}</a></h1>
             </div>
             <p class="card-text" style="white-space: pre-wrap">{!! Str::limit($pertanyaan->isi, 150, '...') !!}</p>
-              <span class="text-muted mr-2">Dibuat {{ $pertanyaan->created_at }}</span>
-              <span class="text-muted mr-2">Diubah {{ $pertanyaan->updated_at }}</span>
+              <span class="mr-2"> {{ $pertanyaan->users->name }} |</span>
+              <span class="text-muted mr-2">Dibuat {{ $pertanyaan->created_at->diffForHumans() }} |</span>
+              <span class="text-muted mr-2">Diubah {{ $pertanyaan->updated_at->diffForHumans() }}</span>
             <div class="float-right">
               <button type="button" class="btn btn-info"><a href="/pertanyaan/{{$pertanyaan->id}}" style="color: white"><i class="fa fa-eye"></i></a></button>
               @if ($pertanyaan->pengguna_id == Auth::user()->id)

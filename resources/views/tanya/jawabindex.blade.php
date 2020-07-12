@@ -70,10 +70,15 @@ Jawaban
       @endforeach
       <form action="/jawaban/{{$tanya->id}}" method="POST">
         @csrf
-        <div class="form-group">
+        <div class="form-group has-feedback{{ $errors->has('isi') ? 'has-error' : '' }}">
           <label for="isi">Jawaban Anda</label>
           <!-- <input type="text" class="form-control" name="isi" placeholder="Masukkan Jawaban Anda" id="isi"> -->
           <textarea name="isi" class="form-control my-editor">{!! old('isi', $isi ?? '') !!}</textarea>
+          @if( $errors->has('isi'))
+          <span class="help-block">
+          <p>{{ $errors->first('isi') }}</p>
+          </span>
+          @endif
         </div>
         <input type="number" class="form-control" name="pengguna_id" id="pengguna_id" value="{{ Auth::user()->id }}" readonly hidden>
         <button type="submit" class="btn btn-info mb-2">Submit</button>

@@ -14,6 +14,10 @@ class KomentarpertanyaanController extends Controller
     }
     
     public function store($pertanyaan_id, Request $request){
+		$this->validate(request(), [
+			"isi" => "required"
+		]);
+		
 	   	$request = $request->all();
 	   	unset($request['_token']);
 	   	$request['pertanyaan_id']=$pertanyaan_id;
